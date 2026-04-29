@@ -1,29 +1,55 @@
-# Plan de pruebas
+# Plantilla de Plan de Pruebas
 
-## Estrategia
-La validación será documental y, si existe implementación posterior, también manual desde terminal en un entorno ARM como Raspbian o Ubuntu ARM en AWS Academy. Las pruebas deben cubrir:
-- viabilidad del alcance,
-- coherencia entre objetivo y lenguaje elegido,
-- claridad de los mensajes y del flujo esperado,
-- capacidad de ejecutar una versión mínima si se implementa,
-- manejo básico de error o restricción de alcance.
+## 1) Objetivo del plan de pruebas
+Describe qué validarás del proyecto (funcionamiento básico, manejo de errores y cumplimiento del alcance).
 
-## Casos de prueba
-| Entrada | Esperado | Éxito |
-|---|---|---|
-| Propuesta de 3 a 5 funciones | Alcance pequeño y justificable | Sí |
-| Lenguaje principal definido | Coherencia con el entorno ARM o soporte mínimo | Sí |
-| Idea con dependencias pesadas | Rechazo o recorte del alcance | Sí |
-| Estructura con docs completos | Repositorio listo para revisión | Sí |
-| Implementación opcional agregada | Código pequeño, sin frameworks | Sí |
-| Plan de pruebas documentado | Casos claros y verificables | Sí |
+## 2) Casos de prueba
+Completa la tabla con pruebas mínimas.
 
-## Criterio de verificación
-Una prueba se considera exitosa si:
-- la propuesta es viable y está bien delimitada,
-- el lenguaje elegido corresponde al alcance,
-- el repositorio incluye documentación completa,
-- los casos de prueba pueden usarse después para validar una implementación.
+| ID | Descripción | Entrada | Resultado esperado | Resultado obtenido | Estado (OK/Falla) |
+|---|---|---|---|---|---|
+| CP-01 | | | | | |
+| CP-02 | | | | | |
+| CP-03 | | | | | |
 
-## Observación técnica
-Si se usa `scripts/run.sh`, el script debe limitarse a compilar o ejecutar una versión mínima, sin agregar dependencias externas.
+## 3) Pruebas manuales
+Describe pruebas ejecutadas manualmente en terminal.
+
+- Prueba manual 1:
+- Prueba manual 2:
+
+## 4) Pruebas con errores
+Incluye casos inválidos o incompletos.
+
+- Error esperado 1:
+- Error esperado 2:
+
+## 5) Pruebas mínimas por lenguaje (elige según tu proyecto)
+
+### Si usas Python
+- Ejecución de `src/main.py` con entrada válida.
+- Ejecución con entrada inválida y mensaje claro.
+
+### Si usas C
+- Compilación sin errores críticos.
+- Ejecución del binario con caso válido e inválido.
+
+### Si usas Bash
+- Ejecución de script con permisos correctos.
+- Validación de argumentos requeridos.
+
+### Si usas ARM64 Assembly
+- Ensamble y enlace mínimos exitosos.
+- Ejecución de un caso simple de entrada/salida.
+
+> No se requiere framework de testing. Las pruebas pueden documentarse manualmente.
+
+## 6) Criterios para considerar la práctica terminada
+Marca cuando cumplas todo:
+
+- [ ] La propuesta está completa y coherente.
+- [ ] El caso de uso está documentado paso a paso.
+- [ ] Hay al menos 3 casos de prueba documentados.
+- [ ] Se probó al menos un caso de error.
+- [ ] El script `scripts/run.sh` refleja la forma real de ejecución.
+- [ ] El alcance se mantiene pequeño y viable.

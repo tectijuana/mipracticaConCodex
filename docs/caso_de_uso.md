@@ -1,30 +1,42 @@
-# Caso de uso
+# Plantilla de Caso de Uso
 
-## Actor
-Estudiante que diseña y documenta una propuesta de micropráctica para entregarla en GitHub Classroom.
+## 1) Usuario principal
+¿Quién usará tu programa?
 
-## Flujo principal
-1. El estudiante ejecuta el programa desde terminal.
-2. El estudiante selecciona una idea pequeña y viable.
-3. El estudiante define el lenguaje principal previsto.
-4. El estudiante documenta el caso de uso, la estructura del repositorio y el plan de pruebas.
-5. El docente revisa que la propuesta sea clara, pequeña y realizable en ARM o en una capa mínima de soporte.
-6. La entrega queda lista para implementación posterior en Raspbian o Ubuntu ARM en AWS Academy.
+## 2) Contexto del usuario
+Describe en qué situación lo usaría y con qué objetivo.
 
-## Flujos alternos
-### Alterno 1: La idea es demasiado grande
-1. El estudiante escribe texto o símbolos en lugar de un número.
-2. La propuesta incluye demasiadas funciones o dependencias.
-3. Se ajusta el alcance a una versión más pequeña y documentable.
+## 3) Situación inicial
+Explica el estado inicial antes de ejecutar el programa.
 
-### Alterno 2: El lenguaje no coincide con el entorno
-1. El estudiante propone una tecnología demasiado pesada o fuera de alcance.
-2. La revisión detecta la incompatibilidad.
-3. Se corrige la propuesta para usar ARM64, C o Bash según corresponda.
+## 4) Flujo principal (paso a paso)
+Describe la secuencia normal de uso.
 
-## Criterios de aceptación
-- La propuesta describe una práctica pequeña y clara.
-- El caso de uso explica quién la usa, cómo y para qué.
-- El plan de pruebas coincide con el alcance propuesto.
-- La estructura del repositorio distingue documentación de implementación opcional.
-- El entorno objetivo ARM queda explícito en la documentación.
+1. Paso 1:
+2. Paso 2:
+3. Paso 3:
+4. Paso 4:
+
+## 5) Flujo alternativo
+¿Qué pasa si el usuario toma otra decisión o usa otra entrada?
+
+## 6) Errores posibles
+Lista errores esperados y cómo se comunicarán.
+
+- Error 1:
+- Error 2:
+- Error 3:
+
+## 7) Resultado esperado
+¿Cuál es el resultado final exitoso?
+
+## 8) Ejemplo de uso en terminal
+```bash
+# Ejemplo: ajusta según tu lenguaje/proyecto
+bash scripts/run.sh
+# o
+python3 src/main.py "entrada de ejemplo"
+```
+
+## 9) Justificación de viabilidad
+Explica por qué este caso de uso es **pequeño, acotado y viable** para completarse en esta práctica.

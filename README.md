@@ -1,29 +1,68 @@
-# Micropráctica GitHub Classroom: Propuesta de práctica ARM64
+# Actividad: Diseño de una Práctica Temática Pequeña para GitHub Classroom
 
-## Objetivo
-Diseñar una propuesta de micropráctica técnica enfocada en **documentación**, pensada para que después pueda implementarse en **ARM64 Assembly (AArch64)** dentro de un entorno ARM real como **Raspbian o Ubuntu ARM en AWS Academy**. La prioridad es justificar la idea, definir su estructura y dejar listo el plan de validación. La implementación de código es **opcional**.
+## Descripción general
+En esta actividad vas a **diseñar y documentar** una propuesta de práctica temática pequeña que pueda implementarse en **ARM64 Assembly, C, Python o Bash**. El enfoque principal está en la planeación técnica, la claridad de la documentación y la organización del repositorio.
 
-## Instrucciones
-1. Clona el repositorio asignado por GitHub Classroom.
-2. Escribe la propuesta del proyecto pequeño en los archivos de `docs/`.
-3. Define el lenguaje principal previsto para la implementación futura. Se recomienda ARM64 Assembly solo si la práctica será muy pequeña.
-4. Describe el alcance, la arquitectura, el caso de uso y el plan de pruebas.
-5. Si alcanzas a desarrollar código, hazlo como extensión opcional en `src/` o `scripts/`, sin frameworks.
-6. Mantén el alcance pequeño: **3 a 5 funcionalidades**.
-7. Sube tu repositorio con la documentación completa.
+Esta actividad está pensada para publicarse en GitHub Classroom sin plantilla previa, por lo que este repositorio ya incluye la estructura base que deberás completar.
 
-## Criterios
-- La propuesta está bien justificada y es viable para un proyecto pequeño.
-- El lenguaje principal está definido y es coherente con el alcance.
-- La arquitectura considera ejecución futura en ARM64, preferentemente en Raspbian o Ubuntu ARM.
-- El repositorio incluye documentación clara de propuesta, uso, pruebas y reflexión.
-- Si existe código opcional, sigue siendo pequeño, sin frameworks y sin dependencias pesadas.
-- La solución no depende de Python, Docker, Kubernetes, cloud ni APIs pagadas.
+## Objetivo de aprendizaje
+Al finalizar esta actividad, el estudiante será capaz de:
 
-## Rúbrica breve
-| Criterio | Peso |
-|---|---:|
-| Claridad y viabilidad de la propuesta | 40% |
-| Calidad del caso de uso y alcance | 25% |
-| Estructura del repositorio y plan de pruebas | 20% |
-| Presentación, orden y entrega académica | 15% |
+- Definir un problema concreto y acotado.
+- Justificar la elección de lenguaje según el caso de uso.
+- Diseñar la estructura de un repositorio limpio y mantenible.
+- Documentar entradas, salidas, límites y riesgos técnicos.
+- Planear pruebas mínimas sin depender de frameworks complejos.
+
+## Lenguajes permitidos
+Puedes elegir **uno** de los siguientes lenguajes como principal:
+
+- ARM64 Assembly
+- C
+- Python
+- Bash
+
+> Nota: Si eliges ARM64 Assembly, tu propuesta debe ser **muy pequeña** (por ejemplo: calculadora básica, conversor simple o manejo mínimo de entrada/salida en consola).
+
+## Reglas para mantener el proyecto pequeño
+1. Enfócate en un solo caso de uso principal.
+2. Limita el alcance a funcionalidades esenciales (1 a 3 funciones clave).
+3. Evita frameworks, APIs externas, bases de datos, nube, Docker y dependencias complejas.
+4. Usa entrada/salida por terminal y archivos locales simples (si aplica).
+5. Prioriza documentación clara antes de escribir mucho código.
+
+## Entregables esperados
+1. `docs/propuesta.md` completo.
+2. `docs/caso_de_uso.md` completo.
+3. `docs/estructura_repositorio.md` revisado y ajustado a tu propuesta.
+4. `docs/plan_de_pruebas.md` con casos de prueba mínimos.
+5. Un prototipo opcional mínimo en `src/main.<ext>`.
+6. Script de ejecución adaptado en `scripts/run.sh`.
+7. Checklist final de pruebas/documentación en `tests/test_plan.md`.
+
+## Instrucciones para el estudiante
+1. Lee todo el repositorio antes de modificar archivos.
+2. Define un tema pequeño y viable.
+3. Completa primero `docs/propuesta.md`.
+4. Después completa `docs/caso_de_uso.md` y `docs/plan_de_pruebas.md`.
+5. Ajusta la estructura y nombres en `docs/estructura_repositorio.md` si tu propuesta lo requiere.
+6. Opcionalmente implementa un prototipo mínimo en `src/`.
+7. Asegúrate de que `scripts/run.sh` ejecute tu prototipo localmente.
+8. Verifica la checklist de `tests/test_plan.md` antes de entregar.
+
+## Ejemplos de temas posibles
+- Mini Toolkit en ARM64
+- Asistente de Estudio en Terminal
+- Reporteador de Información del Sistema
+- Organizador de Archivos
+- Juego de Aprendizaje en Línea de Comandos
+
+## Criterios generales de evaluación
+- Claridad del problema y viabilidad del alcance.
+- Coherencia entre caso de uso, entradas/salidas y criterios de éxito.
+- Justificación técnica de lenguaje y decisiones de diseño.
+- Calidad de la documentación y estructura del repositorio.
+- Evidencia de pruebas mínimas y manejo de errores.
+
+## Nota importante
+En esta actividad, **primero se documenta y justifica la idea**; después, de forma opcional, se implementa un prototipo pequeño. La calidad de la planeación/documentación tiene prioridad sobre la cantidad de código.
