@@ -1,32 +1,49 @@
 # Firmware Architecture
 
-## Source Layout
-- `src/main.cpp`: Complete application logic and hardware pin mapping.
-- `docs/wiring.md`: Wiring and electrical mapping reference.
-- `diagram.json`: Wokwi schematic source.
+## Project Type and Framework
 
-## Runtime Flow
-1. **Static configuration**
-   - Defines keypad matrix (`keys[4][4]`).
-   - Defines GPIO arrays for LEDs, keypad rows, keypad columns.
+- **Target board:** Raspberry Pi Pico W (RP2040).
+- **Firmware style:** Arduino-compatible C++.
+- **Main source:** `src/main.cpp`.
+
+## High-Level Runtime Flow
+
+1. **Static configuration (global scope)**
+   - Defines keypad keymap (`keys[4][4]`).
+   - Defines GPIO arrays for LEDs (`ledPins`), keypad rows (`rowPins`), and columns (`colPins`).
+   - Instantiates `Keypad` object.
 2. **Initialization (`setup`)**
-   - Configures all LED GPIOs as outputs.
-   - Drives all LEDs LOW (off).
-3. **Main loop (`loop`)**
-   - Polls keypad via `keypad.getKey()`.
-   - If a key is pressed, dispatches action in a `switch` statement.
-   - Waits 10 ms between scans (`delay(10)`).
+   - Configures all LED GPIO pins as outputs.
+   - Drives all LED pins LOW.
+3. **Main control loop (`loop`)**
+   - Polls keypad (`keypad.getKey()`).
+   - If key exists, dispatches behavior through `switch` cases.
+   - Applies a 10ms scan delay.
 
-## Module Responsibilities
-- **Keypad module (`Keypad` library)**: matrix scanning, debouncing/basic key event retrieval.
-- **Application logic (`switch` cases)**: maps key events to LED state writes.
-- **GPIO output layer (Arduino API)**: `pinMode`, `digitalWrite` control the LEDs.
+## Behavioral Mapping
 
-## Behavior Contract (Preserved)
-- No key press => no LED state changes.
-- Numeric keys and letter keys set individual or grouped LEDs exactly as coded.
-- No automatic timeout/reset behavior.
+- `1..8`: turn ON corresponding blue LED output.
+- `9`: turn ON all blue LED outputs (`ledPins[0..7]`).
+- `0`: turn OFF all blue LED outputs (`ledPins[0..7]`).
+- `A..D`: turn ON corresponding red LED output.
+- `*`: turn ON all red LED outputs (`ledPins[8..11]`).
+- `#`: turn OFF all red LED outputs (`ledPins[8..11]`).
 
-## Portability Notes
-- Current code is Arduino-framework-native.
-- For strict Pico SDK projects, preserve logic and map APIs through wrappers or minimal adaptation while keeping same key-to-LED behavior.
+## File Responsibilities
+
+- `src/main.cpp`: Complete application logic and pin assignment.
+- `docs/wiring.md`: Hardware pin mapping and connection rationale.
+- `docs/architecture.md`: System design and runtime behavior documentation.
+- `diagram.json`: Wokwi hardware diagram artifact.
+- `CMakeLists.txt`: Minimal top-level build metadata/documentation target.
+
+## Self-Critique and Improvement Pass
+
+- **Initial draft check:** Ensured no logic refactor or functional edits were introduced.
+- **Improvement pass:** Clarified assumptions (board compatibility, active-high LEDs, pull-up rows), expanded deployment steps, and added explicit behavior contract.
+
+## Extensibility Notes (Non-breaking)
+
+- Add non-blocking timing or event logging without altering key-to-LED behavior.
+- Add Wi-Fi telemetry on Pico W only if credentials are externalized (never committed).
+- If porting to pure Pico SDK, keep the same state transitions and command semantics.

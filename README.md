@@ -1,7 +1,8 @@
-# Raspberry Pi Pico W - 4x4 Keypad to 12-LED Controller
+# Raspberry Pi Pico W Keypad-to-LED Controller
 
-## Overview
-This repository documents and organizes a Raspberry Pi Pico W project where a 4x4 matrix keypad drives 12 LEDs. The firmware is preserved with its original control logic (Arduino-style C++), and the repository adds clean structure and deployment documentation for both Wokwi simulation and real hardware.
+A Raspberry Pi Pico W (RP2040) firmware project that reads a 4x4 matrix keypad and controls 12 LEDs using Arduino-style C++ logic.
+
+> **Scope of this repository refresh:** Documentation and project organization were improved while preserving the original runtime behavior in `src/main.cpp`.
 
 ## Repository Structure
 
@@ -9,60 +10,75 @@ This repository documents and organizes a Raspberry Pi Pico W project where a 4x
 .
 ├── CMakeLists.txt
 ├── diagram.json
+├── include/
+│   └── .gitkeep
 ├── src/
 │   └── main.cpp
-├── include/
 └── docs/
     ├── architecture.md
     └── wiring.md
 ```
 
-## Features
-- 4x4 keypad scanning using `Keypad` library.
-- 12 individually controlled LEDs.
-- Group controls:
-  - `9`: turn on LEDs 1..8
-  - `0`: turn off LEDs 1..8
-  - `*`: turn on LEDs A..D
-  - `#`: turn off LEDs A..D
-- Single-key controls for `1..8` and `A..D`.
+## Project Features
 
-## Components (from Wokwi diagram)
-- 1x Raspberry Pi Pico / Pico W (RP2040 form factor)
+- 4x4 matrix keypad input via `Keypad` library.
+- 12 independent LED outputs.
+- Group actions:
+  - `9`: turn ON LEDs 1..8
+  - `0`: turn OFF LEDs 1..8
+  - `*`: turn ON LEDs A..D
+  - `#`: turn OFF LEDs A..D
+- Direct actions:
+  - `1..8`: turn ON individual blue LEDs
+  - `A..D`: turn ON individual red LEDs
+
+## Components List (derived from `diagram.json` + source mapping)
+
+- 1x Raspberry Pi Pico / Pico W-compatible RP2040 board footprint
 - 1x 4x4 membrane keypad
-- 12x LEDs (8 blue + 4 red)
+- 12x LEDs (8 blue, 4 red)
 - 12x 220Ω resistors (LED current limiting)
-- 4x 1kΩ resistors (keypad row pull-up network to 3V3)
-- Hookup wires
+- 4x 1kΩ resistors (keypad row pull-up network)
+- Jumper wires and USB power/programming cable
 
-## GPIO Summary
-See full mapping in `docs/wiring.md`.
-- Keypad columns: GP16, GP17, GP18, GP19
-- Keypad rows: GP26, GP22, GP21, GP20
-- LEDs: GP11, GP10, GP9, GP8, GP7, GP6, GP5, GP4, GP3, GP2, GP28, GP27
+## GPIO Pin Summary
 
-## Build / Flash
+- **Keypad columns:** GP16, GP17, GP18, GP19
+- **Keypad rows:** GP26, GP22, GP21, GP20
+- **LED outputs:** GP11, GP10, GP9, GP8, GP7, GP6, GP5, GP4, GP3, GP2, GP28, GP27
 
-### Option A: Wokwi (quickest)
-1. Create a new RP2040 project in Wokwi.
-2. Paste `diagram.json` into the diagram file.
-3. Paste `src/main.cpp` into the firmware file.
-4. Add Keypad library in Wokwi libraries panel.
-5. Start simulation and press keypad buttons.
+For the full table and physical signal mapping, see `docs/wiring.md`.
 
-### Option B: Real Pico W (Arduino framework)
-1. Install Arduino IDE 2.x.
-2. Add RP2040 boards package (Earle Philhower core).
-3. Install library: `Keypad` by Mark Stanley/Alexander Brevig.
-4. Open `src/main.cpp` as sketch content.
+## How to Run in Wokwi
+
+1. Create/open a Raspberry Pi Pico project in Wokwi.
+2. Replace Wokwi `diagram.json` with this repo's `diagram.json`.
+3. Replace the sketch source with `src/main.cpp`.
+4. Add/install library **Keypad** in Wokwi's library manager.
+5. Start simulation and press keypad keys to verify LED behavior.
+
+## How to Run on Real Hardware (Pico W)
+
+### Arduino IDE path (recommended for this source as-is)
+
+1. Install **Arduino IDE 2.x**.
+2. Install the RP2040 board package (Earle Philhower core).
+3. Install library: **Keypad** (Mark Stanley / Alexander Brevig).
+4. Open/use `src/main.cpp` as your sketch content.
 5. Select board: **Raspberry Pi Pico W**.
-6. Put Pico W in BOOTSEL mode and upload.
+6. Enter BOOTSEL mode if needed and upload.
 
-### Option C: Pico SDK users
-This code is Arduino-API based (`setup()`/`loop()`, `digitalWrite`, `Keypad.h`). If using Pico SDK directly, keep the same logic but add thin compatibility wrappers/framework integration.
+### Pico SDK path (note)
 
-## Wi-Fi Note
-Pico W wireless hardware is not used by this firmware. No credentials are required.
+This code is Arduino-API-based (`setup`, `loop`, `digitalWrite`, `Keypad.h`).
+If you use pure Pico SDK, preserve logic and add a thin adaptation layer.
 
-## Behavior Preservation
-The control logic in `src/main.cpp` is intentionally unchanged from the provided source.
+## Wi-Fi & Secrets
+
+- Pico W Wi-Fi hardware is **not used** in this firmware.
+- No SSID/password or cloud credentials are required.
+- Do not hardcode credentials if you later extend this project with networking.
+
+## Behavior Preservation Statement
+
+`src/main.cpp` intentionally retains the provided control logic without behavioral changes.
