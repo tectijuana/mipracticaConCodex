@@ -1,30 +1,49 @@
-# Estructura del repositorio
+# Estructura del Repositorio
 
-## Árbol
+## Árbol recomendado
 ```text
-.
+nombre-del-proyecto/
 ├── README.md
 ├── docs/
 │   ├── propuesta.md
 │   ├── caso_de_uso.md
 │   ├── estructura_repositorio.md
-│   ├── plan_de_pruebas.md
-│   └── reflexion_ia.md
-├── src/                # opcional
+│   └── plan_de_pruebas.md
+├── src/
 │   └── main.<ext>
-└── scripts/            # opcional
-    └── run.sh
+├── scripts/
+│   └── run.sh
+└── tests/
+    └── test_plan.md
 ```
 
-## Descripción de archivos
-- `README.md`: guía principal de la actividad, objetivos, instrucciones, criterios y rúbrica.
-- `docs/propuesta.md`: plantea el problema, la justificación, el alcance, la arquitectura y los riesgos.
-- `docs/caso_de_uso.md`: describe el actor, el flujo principal, los flujos alternos y los criterios de aceptación.
-- `docs/estructura_repositorio.md`: documenta el árbol del repositorio y la función de cada archivo.
-- `docs/plan_de_pruebas.md`: contiene la estrategia de validación y los casos de prueba.
-- `docs/reflexion_ia.md`: explica el uso responsable de IA, validación manual e integridad académica.
-- `src/main.<ext>`: implementación opcional si el equipo decide construir una versión funcional en ARM, C o Bash.
-- `scripts/run.sh`: script opcional para compilar o ejecutar una versión mínima.
+## Explicación de carpetas
+- `docs/`: documentación obligatoria de propuesta, caso de uso, estructura y pruebas.
+- `src/`: código fuente principal del prototipo.
+- `scripts/`: scripts auxiliares para ejecutar y validar localmente.
+- `tests/`: evidencia ligera de pruebas y checklist de entrega.
 
-## Observación
-La estructura propuesta está pensada para que la entrega mínima sea documentación. Si después se implementa código, debe mantenerse pequeño y compatible con el entorno ARM objetivo.
+## Explicación de archivos
+- `README.md`: guía general de la actividad.
+- `docs/propuesta.md`: definición del problema, alcance y justificación técnica.
+- `docs/caso_de_uso.md`: descripción del uso real paso a paso.
+- `docs/estructura_repositorio.md`: convención de organización del proyecto.
+- `docs/plan_de_pruebas.md`: plan de pruebas mínimo sin frameworks.
+- `src/main.<ext>`: punto de entrada del prototipo (extensión según lenguaje).
+- `scripts/run.sh`: script de ejecución local.
+- `tests/test_plan.md`: checklist breve de calidad y entrega.
+
+## Reglas para nombrar archivos
+1. Usa minúsculas.
+2. Usa guion bajo (`_`) para separar palabras en documentos.
+3. Evita espacios y acentos en nombres de archivo.
+4. Mantén nombres cortos pero descriptivos.
+
+## Reglas para evitar desorden
+1. No agregues archivos temporales al repositorio.
+2. Coloca cada tipo de contenido en su carpeta correspondiente.
+3. Si un archivo deja de usarse, elimínalo o documenta por qué permanece.
+4. Evita duplicar documentación en varios lugares.
+
+## Nota de diseño
+Mantén pocos archivos y funciones pequeñas. Esta práctica evalúa más la claridad de diseño y documentación que la complejidad del código.

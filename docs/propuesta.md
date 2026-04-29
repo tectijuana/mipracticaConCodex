@@ -1,40 +1,67 @@
-# Propuesta
+# Plantilla de Propuesta de Práctica
 
-## Problema
-Muchos estudiantes tienen ideas de proyecto, pero no las aterrizan antes de empezar a programar. Eso termina en alcances demasiado grandes, entregas improvisadas y poca claridad sobre qué se va a construir y cómo se va a validar.
+> Instrucción: completa todas las secciones con información concreta y breve.
 
-## Justificación
-Esta actividad obliga a planear primero y escribir código después. El estudiante debe proponer una práctica pequeña que pueda ejecutarse más adelante en un entorno ARM real, como Raspbian o Ubuntu ARM en AWS Academy. Si el equipo decide implementar, ARM64 Assembly se recomienda solo para ejercicios muy cortos; también se puede elegir C, Bash u otro lenguaje simple según el alcance.
+## 1) Nombre del proyecto
+**Nombre propuesto:**
 
-## Alcance
-La propuesta debe definir de 3 a 5 funcionalidades pequeñas, por ejemplo:
-1. Capturar datos desde terminal.
-2. Procesar una operación simple.
-3. Presentar un resultado legible.
-4. Validar entrada básica.
-5. Registrar un plan de pruebas manuales.
+## 2) Lenguaje principal elegido
+**Lenguaje:** (ARM64 Assembly / C / Python / Bash)
 
-La implementación de código es opcional y no forma parte de la entrega mínima.
+## 3) Justificación del lenguaje
+Explica por qué ese lenguaje es adecuado para resolver tu problema en un proyecto pequeño.
 
-## Arquitectura
-- **Capa principal:** documentación del proyecto en Markdown.
-- **Lenguaje previsto:** ARM64 Assembly, C, Bash u otro lenguaje pequeño, definido por el estudiante.
-- **Entorno objetivo:** Raspbian o Ubuntu ARM en AWS Academy.
-- **Capa opcional mínima:** `src/` y `scripts/` solo si el equipo decide implementar una versión funcional.
-- **Dependencias:** ninguna dependencia pesada.
+## 4) Problema o necesidad que atiende
+Describe qué problema real (académico, personal o técnico) buscas resolver.
 
-Flujo general de trabajo:
-1. Se define la idea.
-2. Se justifica por qué es pequeña y viable.
-3. Se describe la estructura del repositorio.
-4. Se redacta un caso de uso.
-5. Se prepara un plan de pruebas para el futuro.
+## 5) Descripción breve de la solución
+Resume en 4 a 6 líneas cómo funcionará tu propuesta.
 
-## Riesgos
-- Elegir una idea demasiado grande para el tiempo disponible.
-- Mezclar documentación con implementación sin dejar clara la prioridad.
-- Proponer un lenguaje que no corresponda al entorno objetivo.
-- No considerar que el despliegue final será en ARM.
-- Redactar un plan de pruebas que no se pueda ejecutar después.
+## 6) Alcance mínimo (lo que sí incluye)
+Lista funcionalidades mínimas obligatorias (máximo 3).
 
-La mitigación principal es delimitar bien el alcance, decidir el lenguaje desde el inicio y dejar la implementación como una extensión opcional.
+- Funcionalidad 1:
+- Funcionalidad 2:
+- Funcionalidad 3:
+
+## 7) Alcance fuera del proyecto (lo que NO incluye)
+Aclara explícitamente qué cosas no harás para mantener el proyecto pequeño.
+
+- No incluye:
+- No incluye:
+- No incluye:
+
+## 8) Entradas esperadas
+¿Qué datos recibirá el programa? (argumentos, texto en consola, archivo simple, etc.)
+
+## 9) Salidas esperadas
+¿Qué resultados mostrará o generará?
+
+## 10) Limitaciones
+Menciona límites técnicos actuales (tiempo, conocimientos, compatibilidad, etc.).
+
+## 11) Riesgos técnicos
+Describe posibles problemas y cómo los mitigarás.
+
+| Riesgo | Impacto | Mitigación |
+|---|---|---|
+| Ejemplo: manejo incorrecto de argumentos | Medio | Validar entradas y mostrar ayuda |
+
+## 12) Criterios de éxito
+Define cómo sabrás que tu práctica cumplió el objetivo.
+
+- [ ] Criterio 1
+- [ ] Criterio 2
+- [ ] Criterio 3
+
+---
+
+## Nota especial para ARM64 Assembly
+Si eliges ARM64 Assembly, el programa debe ser **muy pequeño**. Ejemplos válidos:
+
+- calculadora básica,
+- conversor simple,
+- lectura y escritura mínima en consola,
+- manipulación básica de cadenas o números.
+
+Evita intentar proyectos grandes en Assembly para esta actividad.
