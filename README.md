@@ -1,10 +1,10 @@
 # Raspberry Pi Pico W Keypad-to-LED Controller
 
-A Raspberry Pi Pico W (RP2040) firmware project that reads a 4x4 matrix keypad and controls 12 LEDs using Arduino-style C++ logic.
+Firmware and hardware documentation for a Raspberry Pi Pico W project that reads a 4x4 matrix keypad and controls 12 LEDs.
 
-> **Scope of this repository refresh:** Documentation and project organization were improved while preserving the original runtime behavior in `src/main.cpp`.
+> **Important:** The firmware logic in `src/main.cpp` is preserved as provided (no behavior changes).
 
-## Repository Structure
+## 1) Repository Structure (Pico W, C/C++)
 
 ```text
 .
@@ -14,71 +14,81 @@ A Raspberry Pi Pico W (RP2040) firmware project that reads a 4x4 matrix keypad a
 │   └── .gitkeep
 ├── src/
 │   └── main.cpp
-└── docs/
-    ├── architecture.md
-    └── wiring.md
+├── docs/
+│   ├── architecture.md
+│   └── wiring.md
+└── README.md
 ```
 
-## Project Features
+This layout follows a clean Pico SDK/embedded C++ organization (`src`, `include`, `docs`) while keeping Arduino-style source compatibility.
 
-- 4x4 matrix keypad input via `Keypad` library.
-- 12 independent LED outputs.
-- Group actions:
-  - `9`: turn ON LEDs 1..8
-  - `0`: turn OFF LEDs 1..8
-  - `*`: turn ON LEDs A..D
-  - `#`: turn OFF LEDs A..D
-- Direct actions:
-  - `1..8`: turn ON individual blue LEDs
-  - `A..D`: turn ON individual red LEDs
+## 2) Project Overview
 
-## Components List (derived from `diagram.json` + source mapping)
+- **MCU:** RP2040 (Raspberry Pi Pico W).
+- **Input:** 4x4 membrane keypad.
+- **Output:** 12 GPIO-driven LEDs (8 blue + 4 red).
+- **Framework style:** Arduino API (`setup()`, `loop()`, `digitalWrite()`, `Keypad.h`).
+- **Primary goal:** Key press events latch LEDs ON/OFF by command groups.
 
-- 1x Raspberry Pi Pico / Pico W-compatible RP2040 board footprint
+## 3) Features and Key Behavior
+
+- `1`..`8`: Turn ON matching blue LED.
+- `9`: Turn ON all blue LEDs (`1..8`).
+- `0`: Turn OFF all blue LEDs (`1..8`).
+- `A`..`D`: Turn ON matching red LED.
+- `*`: Turn ON all red LEDs (`A..D`).
+- `#`: Turn OFF all red LEDs (`A..D`).
+
+## 4) Components List (from `diagram.json`)
+
+- 1x Raspberry Pi Pico / Pico W board footprint (`wokwi-pi-pico` in simulation)
 - 1x 4x4 membrane keypad
-- 12x LEDs (8 blue, 4 red)
-- 12x 220Ω resistors (LED current limiting)
-- 4x 1kΩ resistors (keypad row pull-up network)
-- Jumper wires and USB power/programming cable
+- 12x LEDs (`led1..led12`)
+- 12x 220Ω resistors (`r1..r12`) for LED current limiting
+- 4x 1kΩ resistors (`rp1..rp4`) as keypad row pull-ups to 3V3
+- Jumper wiring + USB cable
 
-## GPIO Pin Summary
+## 5) Quick GPIO Summary
 
 - **Keypad columns:** GP16, GP17, GP18, GP19
 - **Keypad rows:** GP26, GP22, GP21, GP20
-- **LED outputs:** GP11, GP10, GP9, GP8, GP7, GP6, GP5, GP4, GP3, GP2, GP28, GP27
+- **LEDs:** GP11, GP10, GP9, GP8, GP7, GP6, GP5, GP4, GP3, GP2, GP28, GP27
 
-For the full table and physical signal mapping, see `docs/wiring.md`.
+See full mapping in [`docs/wiring.md`](docs/wiring.md).
 
-## How to Run in Wokwi
+## 6) Run in Wokwi
 
 1. Create/open a Raspberry Pi Pico project in Wokwi.
-2. Replace Wokwi `diagram.json` with this repo's `diagram.json`.
-3. Replace the sketch source with `src/main.cpp`.
-4. Add/install library **Keypad** in Wokwi's library manager.
+2. Replace the project `diagram.json` with this repository's `diagram.json`.
+3. Copy `src/main.cpp` into the sketch file.
+4. Ensure library **Keypad** is enabled in Wokwi.
 5. Start simulation and press keypad keys to verify LED behavior.
 
-## How to Run on Real Hardware (Pico W)
+## 7) Run on Real Pico W Hardware
 
-### Arduino IDE path (recommended for this source as-is)
+### Option A: Arduino IDE (recommended for this source)
 
 1. Install **Arduino IDE 2.x**.
-2. Install the RP2040 board package (Earle Philhower core).
-3. Install library: **Keypad** (Mark Stanley / Alexander Brevig).
-4. Open/use `src/main.cpp` as your sketch content.
-5. Select board: **Raspberry Pi Pico W**.
-6. Enter BOOTSEL mode if needed and upload.
+2. Install RP2040 core (Earle Philhower package).
+3. Install library **Keypad**.
+4. Open/upload firmware equivalent to `src/main.cpp`.
+5. Select board **Raspberry Pi Pico W** and the correct USB port.
+6. If needed, hold **BOOTSEL** while connecting USB, then upload.
 
-### Pico SDK path (note)
+### Option B: Pico SDK project shell
 
-This code is Arduino-API-based (`setup`, `loop`, `digitalWrite`, `Keypad.h`).
-If you use pure Pico SDK, preserve logic and add a thin adaptation layer.
+`CMakeLists.txt` is included for repository organization, but current logic is Arduino-API based.
+To build with pure Pico SDK, keep business logic unchanged and adapt only framework glue.
 
-## Wi-Fi & Secrets
+## 8) Wi-Fi and Credential Safety
 
-- Pico W Wi-Fi hardware is **not used** in this firmware.
-- No SSID/password or cloud credentials are required.
-- Do not hardcode credentials if you later extend this project with networking.
+- Pico W wireless hardware is **not used** by current firmware.
+- No SSID/password is needed.
+- If Wi-Fi is added later, use external config (e.g., ignored local header/env) and never commit secrets.
 
-## Behavior Preservation Statement
+## 9) Non-Behavioral Documentation Scope
 
-`src/main.cpp` intentionally retains the provided control logic without behavioral changes.
+This repository refresh is documentation-focused:
+- Clarified architecture.
+- Added explicit wiring and GPIO tables.
+- Preserved original logic in `src/main.cpp`.
